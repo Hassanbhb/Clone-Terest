@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="http://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+  <script src="https://masonry.desandro.com/masonry.pkgd.js"></script>
+  <link rel="stylesheet" href="/public/style.css">
+  <script src="https://imagesloaded.desandro.com/imagesloaded.pkgd.js"></script>
+  <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
+  <title>CloneTerest</title>
+</head>
+
+<body>
+  <nav>
+    <ul>
+      <li><a href="/"><img src="/public/ct-logo.png" alt="logo"></a></li>
+      <li><a href="/"><i class="fa fa-home"></i> All</a></li>
+      <!-- if user is logged in display a diffirent nav -->
+      <% if(user){ %>
+        <li><a href="/cloneBoard"><i class="fas fa-th"></i> My CloneBoard</a></li>
+        <li><a href="/auth/logout"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+        <li class="profile">
+          <img src="<%= user.thumbnail %>" alt="">
+          <p><strong>Welcome</strong></p>
+          <p><%= user.username %></p>
+        </li>
+      <% }else{ %>
+        <li><a href="/auth/twitter"><i class="fab fa-twitter"></i> Login with Twitter</a></li>
+      <% } %>
+    </ul>
+  </nav>
+
+
+  <main>
+    <div class="grid">
+      <div class="grid-sizer"></div>
+
+      <!-- loop through the data and display each img -->
+      <% images.forEach(function(image){ %>
+        <div class="grid-item">
+          <img src="<%= image.url %>">
+          <p class="title"> <%= image.title %> </p>
+
+
+          <!-- the style of the info changes if the user is logged in -->
+          <% if(user){ %>
+          <div class="img-info">
+              <p> <%= image.owner %> </p>
+              <p>
+                <span class="heart">
+                  <i class="fa fa-heart"></i>
+                </span>
+                <span> <%= image.likes %></span>
+              </p>
+          </div>
+          <% }else{ %>
+            <div class="img-info no-user">
+                <p> <%= image.owner %> </p>
+            </div>
+          <% } %>
+
+        </div>
+      <% }) %>
+
+
+    </div>
+  </main>
+
+  <script type="text/javascript" src="../public/masonry.js"></script>
+  <script type="text/javascript" src="../public/addLike.js"></script>
+</body>
+
+</html>

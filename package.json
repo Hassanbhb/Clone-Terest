@@ -1,0 +1,21 @@
+{
+  "name": "clone-terest",
+  "version": "1.0.0",
+  "description": "A clone of pinterest",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Hassan ben haj bouih",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "cookie-session": "^2.0.0-beta.3",
+    "dotenv": "^5.0.0",
+    "ejs": "^2.5.7",
+    "express": "^4.16.2",
+    "mongoose": "^5.0.6",
+    "passport": "^0.4.0",
+    "passport-twitter": "^1.0.4"
+  }
+}

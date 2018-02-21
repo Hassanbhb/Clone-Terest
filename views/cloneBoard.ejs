@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="http://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+  <script src="https://masonry.desandro.com/masonry.pkgd.js"></script>
+  <link rel="stylesheet" href="/public/style.css">
+  <script src="https://imagesloaded.desandro.com/imagesloaded.pkgd.js"></script>
+  <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
+  <title>My CloneBoard</title>
+</head>
+
+<body>
+  <nav>
+    <ul>
+      <li><a href="/"><img src="/public/ct-logo.png" alt="logo"></a></li>
+      <li><a href="/"><i class="fa fa-home"></i> All</a></li>
+      <li><a href="/cloneBoard"><i class="fas fa-th"></i> My CloneBoard</a></li>
+      <li><a href="/auth/logout"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+      <li class="profile">
+        <img src="<%= user.thumbnail %>" alt="">
+        <p><strong>Welcome</strong></p>
+        <p>
+          <%= user.username %>
+        </p>
+      </li>
+    </ul>
+  </nav>
+  <main>
+
+    <div class="grid">
+      <div class="grid-sizer"></div>
+      <div class="grid-item">
+        <div class="add">Add a Pic</div>
+      </div>
+
+      <% images.forEach(function(image){ %>
+        <div class="grid-item">
+          <img src="<%= image.url %>">
+          <p class="title"> <%= image.title %> </p>
+
+          <div class="img-info">
+            <p> <%= image.owner %> </p>
+            <p>
+              <span class="heart">
+                <i class="fa fa-heart"></i>
+              </span>
+              <span> <%= image.likes %></span>
+            </p>
+            <p class="delete-btn">X</p>
+          </div>
+        </div>
+      <% }) %>
+
+    </div>
+
+    <div class="addForm">
+
+      <h1>Add a Pic !</h1>
+
+      <form>
+        <div class="imgArea">
+          <img calss="fromImg" src="http://www.pixedelic.com/themes/geode/demo/wp-content/uploads/sites/4/2014/04/placeholder.png">
+        </div>
+        <input placeholder="Title" name="title" type="text" required />
+        <input class='imgUrl' name="url" placeholder="Source (img link)" type="text" required />
+        <input class="formBtn" type="submit" />
+      </form>
+
+    </div>
+  </main>
+  <script type="text/javascript" src="../public/masonry.js"></script>
+  <script type="text/javascript" src="../public/addimg.js"></script>
+  <script type="text/javascript" src="../public/addLike.js"></script>
+
+</body>
+
+</html>
